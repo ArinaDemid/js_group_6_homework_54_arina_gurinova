@@ -3,8 +3,11 @@ import './App.css';
 import './components/cards.css';
 import Card from './components/card';
 import CardDeck from './components/cardDeck';
+import PokerHand from './components/pokerHand';
 
 class App extends Component {
+
+  statusHand = null;
   state = {
     cards:[]
   };
@@ -15,6 +18,11 @@ class App extends Component {
     const deck = new CardDeck();
 
     this.state.cards = deck.getCards(5);
+
+    const hand = new PokerHand(this.state.cards);
+
+    this.statusHand = hand.getOutcome();
+
   }
 
   changeCards = () => {
@@ -23,6 +31,10 @@ class App extends Component {
     this.state.cards = cards;
 
     this.setState({cards});
+
+    const hand = new PokerHand(this.state.cards);
+
+    this.statusHand = hand.getOutcome();
   };
 
   render() {
@@ -51,6 +63,7 @@ class App extends Component {
           <div className="playingCards faceImages">
             {cards}
           </div>
+          <p className="statusWin">{this.statusHand}</p>
         </div>
       );
   }
