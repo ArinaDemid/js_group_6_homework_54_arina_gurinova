@@ -6,8 +6,9 @@ import CardDeck from './components/cardDeck';
 import PokerHand from './components/pokerHand';
 
 class App extends Component {
-
+  money = 0;
   statusHand = null;
+
   state = {
     cards:[]
   };
@@ -37,10 +38,40 @@ class App extends Component {
     this.statusHand = hand.getOutcome();
   };
 
+  changeCard = id => {
+    const index = this.state.cards.findIndex(p => p.id === id);
+    const cards = [...this.state.cards];
+    
+
+    // const deck = new PokerHand(this.state.cards);
+
+    // let deckAll = deck.getDeck;
+
+    // for (let i = 0; i < this.state.cards.length; i++) {
+    //   deckAll.splice(index, 1);
+    // }
+
+    cards.splice(index, 1);
+    this.setState({cards});
+
+  }
+
+  AddMoney = () => {
+    if(this.statusHand === 'Royal flush') this.money += 50;
+    if(this.statusHand === 'Straight flush') this.money += 40;
+    if(this.statusHand === 'Four of a kind') this.money += 35;
+    if(this.statusHand === 'Full house') this.money += 30;
+    if(this.statusHand === 'Flush') this.money += 25;
+    if(this.statusHand === 'Straight') this.money += 20;
+    if(this.statusHand === 'Three of a kind') this.money += 15;
+    if(this.statusHand === 'Two pairs') this.money += 10;
+    if(this.statusHand === 'One pair') this.money += 5;
+  };
+
   render() {
 
     let cards = null;
-    
+    this.AddMoney();
     cards = (
       <ul className="table"> 
       {
@@ -49,7 +80,8 @@ class App extends Component {
           <Card 
             key={card.id}
             suit={card.suit}
-            rank={card.rank}>
+            rank={card.rank}
+            remove={() => this.changeCard(card.id)}>
           </Card>
           )
         })
@@ -60,10 +92,12 @@ class App extends Component {
       return (
         <div className="App">
           <button onClick={this.changeCards}>Shuffle Cards</button>
+          {/* <button onClick={this.changeCard}>Change Card</button> */}
           <div className="playingCards faceImages">
             {cards}
           </div>
           <p className="statusWin">{this.statusHand}</p>
+          <p className="money">Money: {this.money} $</p>
         </div>
       );
   }

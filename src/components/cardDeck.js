@@ -4,12 +4,18 @@ const suit = ['♦', '♠', '♥', '♣'];
 
 class CardDeck {
     cards=[];
+    count = 0;
+
+    _generateId = () => {
+        this.count++
+        return this.count;
+    };
 
     constructor() {
 
         for (let i = 0; i < suit.length; i++) {
             for (let j = 0; j < rank.length; j++) {
-                this.cards.push({rank:rank[j], suit:suit[i]});
+                this.cards.push({rank:rank[j], suit:suit[i], id: this._generateId()});
             }
         }
     }
@@ -27,6 +33,10 @@ class CardDeck {
             outCards.push(this.getCard());
         }
         return outCards;
+    };
+
+    getDeck = () => {
+        return this.cards;
     };
 
 }

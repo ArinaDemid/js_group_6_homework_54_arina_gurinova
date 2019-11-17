@@ -13,7 +13,7 @@ const Card = props => {
     let className =  `card rank-${props.rank.toLowerCase()} ${suits[props.suit]}`;
 
     return (
-        <a className={className} href='#'>
+        <a className={className} href='#' onClick={props.remove}>
             <span className="rank">{props.rank}</span>
             <span className="suit">{props.suit}</span>
         </a>

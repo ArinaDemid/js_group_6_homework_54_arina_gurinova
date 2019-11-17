@@ -41,11 +41,8 @@ class PokerHand {
                     break;
                 }
                 if (i === 3 && counter === 4 && this.rankCount['A']) this.straight = i;
-
             } 
-    
         }
-        
     }
 
     getOutcome = () => {
@@ -60,7 +57,6 @@ class PokerHand {
         if(this.flush === 1) return `Flush`;
         else return `You are not lucky in the cards`;
     };
-
 
 };
 
