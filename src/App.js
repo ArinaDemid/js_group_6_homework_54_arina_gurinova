@@ -19,7 +19,7 @@ class App extends Component {
 
     this.state.cards = deck.getCards(5);
 
-    const hand = new PokerHand(this.state.cardsS);
+    const hand = new PokerHand(this.state.cards);
 
     this.statusHand = hand.getOutcome();
 
