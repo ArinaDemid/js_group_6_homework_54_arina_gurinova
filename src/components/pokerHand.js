@@ -41,7 +41,7 @@ class PokerHand {
                     break;
                 }
                 if (i === 3 && counter === 4 && this.rankCount['A']) this.straight = i;
-            } 
+            }
         }
     }
 

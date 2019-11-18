@@ -35,10 +35,6 @@ class CardDeck {
         return outCards;
     };
 
-    getDeck = () => {
-        return this.cards;
-    };
-
 }
 
 export default CardDeck;

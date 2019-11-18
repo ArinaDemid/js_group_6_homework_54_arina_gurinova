@@ -30,31 +30,12 @@ class App extends Component {
     const deck = new CardDeck();
     const cards = deck.getCards(5);
     this.state.cards = cards;
-
     this.setState({cards});
 
     const hand = new PokerHand(this.state.cards);
 
     this.statusHand = hand.getOutcome();
   };
-
-  changeCard = id => {
-    const index = this.state.cards.findIndex(p => p.id === id);
-    const cards = [...this.state.cards];
-    
-
-    // const deck = new PokerHand(this.state.cards);
-
-    // let deckAll = deck.getDeck;
-
-    // for (let i = 0; i < this.state.cards.length; i++) {
-    //   deckAll.splice(index, 1);
-    // }
-
-    cards.splice(index, 1);
-    this.setState({cards});
-
-  }
 
   AddMoney = () => {
     if(this.statusHand === 'Royal flush') this.money += 50;
@@ -80,8 +61,7 @@ class App extends Component {
           <Card 
             key={card.id}
             suit={card.suit}
-            rank={card.rank}
-            remove={() => this.changeCard(card.id)}>
+            rank={card.rank}>
           </Card>
           )
         })
@@ -92,7 +72,6 @@ class App extends Component {
       return (
         <div className="App">
           <button onClick={this.changeCards}>Shuffle Cards</button>
-          {/* <button onClick={this.changeCard}>Change Card</button> */}
           <div className="playingCards faceImages">
             {cards}
           </div>
